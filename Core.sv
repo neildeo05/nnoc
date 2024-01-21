@@ -35,6 +35,7 @@ module Core (clk, reset, load, weights,  activation, result);
    Array arr(clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val, result);
 
 
+
    // Router module should take the result and quantize it back to a 8 bit num
    
    

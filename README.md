@@ -18,8 +18,8 @@ Each "core" contains a 4x4 systolic array, that does a matrix multiplication bas
 # Quantization Routine
 
 1. Weights are stored in int8 or GPTQ int4
-2. Weights are loaded to each core
-3. Weights are dequantized to bfloat16
+2. Weights are dequantized to bfloat16, and loaded onto each process element
+3. Activations are also dequantized to bfloat16
 4. In systolic array, values are mulitplied, then accumulated into float32
 5. When result is collected, output is quantized to int8 or gptq int4
 
