@@ -1,11 +1,10 @@
 # NNChip
 
 Goals:
-0. [ ] Change from integer to bfloat16
-1. [ ] Collect results in result buffer, and quantize from 32 bits back to 16 bits
-2. [ ] Load, Accumulate, Route in Router (Target router gets two values and adds them based on head flit)
-  ---- Send Email ---
-5. [ ] Network on Chip
+1. [ ] Change from integer to bfloat16
+2. [ ] Collect results in result buffer, and quantize from 32 bits back to 16 bits
+3. [ ] Load, Accumulate, Route in Router (Target router gets two values and adds them based on head flit)
+4. [ ] Network on Chip-related stuff
 
 
 
