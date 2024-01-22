@@ -25,6 +25,9 @@ Each "core" contains a 4x4 systolic array, that does a matrix multiplication bas
 
 The way it currently works is it writes quantized int8 values to a core, then converts them bfloat16, then transfers them to a systolic array, where they are accumulated into a float32. It then quantizes the float32 values into int8, and that is the output to the routers
 
+
+That means that weights are only stored using 8 bits in memory, but accuracy shouldn't be degraded too much because all intermediate operations are done in bfloat16
+
 # Routing Routine (not complete)
 
 The goal of this project is to have extremely simple cores, routed with more complex routers.

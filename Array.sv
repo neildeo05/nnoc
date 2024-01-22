@@ -38,7 +38,6 @@ module Array (clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val,
         .reset(reset),
         .load(load),
         .i_weight(weights[0][i]),
-     // why we call it i right if it comes from left idk
         .i_west(row1[i]),
         .o_east(row1[i+1]),
  	.i_north(col_interconnects[i][0]),
