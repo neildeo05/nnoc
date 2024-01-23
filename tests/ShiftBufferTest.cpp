@@ -36,7 +36,7 @@ int main() {
     trace->dump(cnt);
 
     cnt++;
-    to->clk ^= 1; //tick dat shit
+    to->clk ^= 1; 
   }
 
     trace->close();

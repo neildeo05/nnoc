@@ -4,38 +4,39 @@
 #include <bitset>
 #include "verilated.h"
 #include "verilated_vcd_c.h"
-#include "VCore.h"
+#include "VPE.h"
 
-#define MAX_TIME 40
+#define MAX_TIME 25
 uint8_t cnt = 0;
 
 using namespace std;
 
 int main() { 
-  VCore *to = new VCore;
+  VPE *to = new VPE;
 
   Verilated::traceEverOn(true);
   VerilatedVcdC *trace = new VerilatedVcdC;
   to->trace(trace, 5);
   trace->open("waveform.vcd");
 
-  for(int i = 0; i < 16; i++) {
-    to->activation[i] = i+1;
-  }
-  printf("\n");
-  for(int i = 0; i < 4; i++) {
-     for(int j = 0; j < 4; j++) {
-       to->weights[i][j] = ((i+1)*(j+1));
-	printf("%d ", to->weights[i][j]);
-     }
-     printf("\n");
-  }
   
+  to->i_weight = 10;
   to->load = 1;
+
+  to->i_north = 2;
+  to->i_west = 2;
   while (cnt != MAX_TIME) {
     // have to wait to laod the weight
     if(cnt > 1) {
       to->load = 0;
+    }
+    if(cnt == 10 || cnt == 11) {
+      to->reset = 1;
+      to->i_north = 3;
+      to->i_west = 6;
+    }
+    else {
+      to->reset = 0;
     }
     to->eval();
     trace->dump(cnt);
