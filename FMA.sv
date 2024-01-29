@@ -1,6 +1,7 @@
 // NOTE: This kinda works but not in the way I expected
 // Also I don't think signed numbers work
 //TODO: Fixed signed number implementation
+// Also there are some issues (could be massive)
 module FMA (a, b, c, out, mul_out);
    input logic [15:0] a;
    input logic [15:0] b;
@@ -37,7 +38,6 @@ module FMA (a, b, c, out, mul_out);
 
 
          
-      $display("%b\n", finalMant);
       
       if (finalMant[21] == 1) begin
          
@@ -61,7 +61,6 @@ module FMA (a, b, c, out, mul_out);
       out[31] = 0;
       out[30:23] = biggerExp;
       out[22:0] = finalMant[23:1];
-      $display("%b\n", out);
    end
    
 endmodule; // FMA

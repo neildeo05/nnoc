@@ -30,7 +30,6 @@ bfloat16 extract_bfloat16_components(uint16_t bfloat) {
   result.mantissa = bfloat & 0x7F;         // last 7 bits
   result.exponent = (bfloat >> 7) & 0xFF;  // next 8 bits
   result.sign = (bfloat >> 15) & 0x1;      // first bit
-  printf("RESULT SIGN %d\n", result.sign);
   return result;
 }
 float bfloat16_to_float32(bfloat16 bfloat) {
@@ -48,10 +47,10 @@ int main() {
   VFMA *to = new VFMA;
 
   //float a = 75021.11893;
-  //float b = 19031.983;
-  float a = 523.197245540547;
-  float b = 121.7352952668305;
-  float c = 188.0075562649760;
+  float a = 9210.1;
+  float b = 19031.983;
+  //float b = 2.1;
+  float c = 1912319871.9;
   printf("(%f * %f) + %f\n", a, b, c);
   printf("Desired Mul result: %f\n", a * b);
   printf("Desired Mulacc result: %f\n", (a * b) + c);
