@@ -4,10 +4,9 @@
 This project uses Verilator. If you have verilator installed, you can run `make` in the `tests/` directory, and look at `waveform.vcd`
 
 Goals:
-1. [ ] Change from integer to bfloat16
-2. [ ] Collect results in result buffer, and quantize from 32 bits back to 16 bits
-3. [ ] Load, Accumulate, Route in Router (Target router gets two values and adds them based on head flit)
-4. [ ] Bufferless routing
+1. [ ] Load, Accumulate, Route in Router (Target router gets two values and adds them based on head flit)
+2. [ ] Bufferless routing
+3. [ ] IP FMA unit, or at least a formally verified/tested FMA unit
 
 
 

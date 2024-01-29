@@ -14,7 +14,7 @@ module FMA (a, b, c, out, mul_out);
    logic [7:0]         addendExp;
    logic [7:0]         mulOutExp;
    logic [7:0]         biggerExp;
-   logic [23:0]        finalMant;
+   logic signed [23:0]        finalMant;
    
    
    assign addendExp = c[30:23] ;
@@ -32,20 +32,24 @@ module FMA (a, b, c, out, mul_out);
       addendMant = (addendMant >> (signed'(biggerExp - addendExp))) ;
       
       mulOutMant = (mulOutMant >> (signed'(biggerExp - mulOutExp)));
-      if (c[31]) addendMant = addendMant * -1;
-      if (mul_out[31]) mulOutMant = mulOutMant * -1;
-      finalMant = addendMant + mulOutMant;
+      if (c[31]) addendMant[23] = 1;
+      if (mul_out[31]) mulOutMant[23] = 1;
+      finalMant = signed'(addendMant + mulOutMant);
 
-
-         
       
       if (finalMant[21] == 1) begin
-         
          finalMant = finalMant << 1;
       end
       else begin
          if (finalMant[22] == 0 && finalMant[21] == 0) begin
-            finalMant = finalMant << 1;
+            if (!finalMant[23]) begin 
+               finalMant = finalMant << 1;
+            end
+            else begin
+               biggerExp = biggerExp + 1;
+            end
+            
+            
          end
          else begin
             if (finalMant[23] == 1 && finalMant[22] == 1) begin
@@ -53,6 +57,7 @@ module FMA (a, b, c, out, mul_out);
                finalMant = finalMant + 1;
             end
             else biggerExp = biggerExp + 1;
+            
          end
       end
       
@@ -61,6 +66,10 @@ module FMA (a, b, c, out, mul_out);
       out[31] = 0;
       out[30:23] = biggerExp;
       out[22:0] = finalMant[23:1];
+      $display("%b\n", out);
+      
+      
+
    end
    
 endmodule; // FMA

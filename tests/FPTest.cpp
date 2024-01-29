@@ -46,8 +46,8 @@ float int32_to_float_32(uint32_t val) {
 int main() { 
   VFMA *to = new VFMA;
 
-  //float a = 75021.11893;
-  float a = 9210.1;
+  float a = 75021.11893;
+  //float a = 9210.1;
   float b = 19031.983;
   //float b = 2.1;
   float c = 1912319871.9;
@@ -58,7 +58,6 @@ int main() {
   uint16_t bf = float32_to_bfloat16(b);
   float should_be = bfloat16_to_float32(extract_bfloat16_components(af))* bfloat16_to_float32(extract_bfloat16_components(bf))+ c;
   printf("(%f * %f) + %f = %f\n", bfloat16_to_float32(extract_bfloat16_components(af)), bfloat16_to_float32(extract_bfloat16_components(bf)), c, should_be);
-  printf("%f\n", c);
   to->a = af;
   to->b = bf;
   to->c = *((uint32_t*)(&c));
