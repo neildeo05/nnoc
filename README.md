@@ -13,9 +13,14 @@ Goals:
 
 # Organization (in progress)
 
-Each "core" contains a 4x4 systolic array, that does a matrix multiplication based on a routine. These cores are connected to one another using a torus interconnect. Information will be routed using flit-level bufferless routing <https://people.inf.ethz.ch/omutlu/pub/bless_isca09.pdf>
+Each "core" contains a 4x4 systolic array, that does a matrix multiplication based on a routine. These cores are connected to one another using a torus interconnect. Information will be routed using flit-level bufferless routing <https://people.inf.ethz.ch/omutlu/pub/bless_isca09.pdf>. 
 
-# Quantization Routine
+There are implementations of both int8 systolic arrays and bfloat16 systolic arrays
+
+## LLM.int8() Quantization Routine
+In the LLM.int8() quantization routine, operations that act on "outliers", which are numbers that aren't cleanly representable in the int8 format are kept as bfloat16 values, and a bfloat16 computation unit does the matrix multiplication on those values. The values that can be quantized are quantized, and a int8 compute unit takes care of those values.
+
+## gpt-fast Quantization Routine
 
 1. Weights are stored in int8 or GPTQ int4
 2. Weights are dequantized to bfloat16, and loaded onto each process element
@@ -24,7 +29,6 @@ Each "core" contains a 4x4 systolic array, that does a matrix multiplication bas
 5. When result is collected, output is quantized to int8 or gptq int4
 
 The way it currently works is it writes quantized int8 values to a core, then converts them bfloat16, then transfers them to a systolic array, where they are accumulated into a float32. It then quantizes the float32 values into int8, and that is the output to the routers
-
 
 That means that weights are only stored using 8 bits in memory, but accuracy shouldn't be degraded too much because all intermediate operations are done in bfloat16
 

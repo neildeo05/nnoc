@@ -3,5 +3,5 @@ core:
 	./obj_dir/VCore
 
 fp:
-	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build FPTest.cpp ../FPMulacc.sv 
-	./obj_dir/VFPMulacc
+	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build FPTest.cpp ../FMA.sv 
+	./obj_dir/VFMA
