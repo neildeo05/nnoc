@@ -5,3 +5,7 @@ core:
 fp:
 	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build FPTest.cpp ../FMA.sv 
 	./obj_dir/VFMA
+	
+dequant:
+	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build tb_dequant.cpp ../dequant.sv 
+	./obj_dir/Vdequant
