@@ -41,7 +41,7 @@ $timescale 1ps $end
   $var wire  8 m! weights[3][1] [7:0] $end
   $var wire  8 n! weights[3][2] [7:0] $end
   $var wire  8 o! weights[3][3] [7:0] $end
-  $scope module Core $end
+  $scope module Core_int8 $end
    $var wire  8 p! activation[0] [7:0] $end
    $var wire  8 z! activation[10] [7:0] $end
    $var wire  8 {! activation[11] [7:0] $end

@@ -16,7 +16,7 @@
  */
 
 
-module Core (clk, reset, load, weights,  activation, result);
+module Core_int8 (clk, reset, load, weights,  activation, result);
    input logic clk;
    input logic reset;
    input logic load;
@@ -30,10 +30,12 @@ module Core (clk, reset, load, weights,  activation, result);
    logic [7:0] row2_val;
    logic [7:0] row3_val;
    logic [7:0] row4_val;
-   ShiftBuffer shb (clk, reset, load, activation, row1_val, row2_val, row3_val, row4_val);
+   ShiftBuffer_int8 shb (clk, reset, load, activation, row1_val, row2_val, row3_val, row4_val);
 
-   Array arr(clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val, result);
+   Array_int8 arr(clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val, result);
 
+
+   ResultBuffer_int8 rb(clk, reset, result, res_buffer);
 
 
    // Router module should take the result and quantize it back to a 8 bit num

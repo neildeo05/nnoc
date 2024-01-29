@@ -1,4 +1,4 @@
-module ShiftReg (clk, reset, load, pload, shin, out);
+module ShiftReg_int8 (clk, reset, load, pload, shin, out);
    input logic clk;
    input logic reset;
    input logic load;

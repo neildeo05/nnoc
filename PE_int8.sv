@@ -1,4 +1,4 @@
-module PE (clk, reset, load, i_weight, i_north, i_west, o_south, o_east);
+module PE_int8 (clk, reset, load, i_weight, i_north, i_west, o_south, o_east);
 
    input logic clk;
    input logic reset;

@@ -4,7 +4,7 @@
 #include <bitset>
 #include "verilated.h"
 #include "verilated_vcd_c.h"
-#include "VCore.h"
+#include "VCore_int8.h"
 
 #define MAX_TIME 40
 uint8_t cnt = 0;
@@ -12,7 +12,7 @@ uint8_t cnt = 0;
 using namespace std;
 
 int main() { 
-  VCore *to = new VCore;
+  VCore_int8 *to = new VCore_int8;
 
   Verilated::traceEverOn(true);
   VerilatedVcdC *trace = new VerilatedVcdC;
@@ -38,6 +38,10 @@ int main() {
       to->load = 0;
     }
     to->eval();
+    for(int i = 0; i < 4; i++) {
+      printf("%d\n", to->result[i]);
+      
+    }
     trace->dump(cnt);
 
     cnt++;

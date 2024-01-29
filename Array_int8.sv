@@ -1,4 +1,4 @@
-module Array (clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val, result_buffer);
+module Array_int8 (clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val, result_buffer);
    input logic clk;
    input logic load;
    input logic reset;
@@ -34,7 +34,7 @@ module Array (clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val,
    generate
       genvar i;
       for (i = 0; i < 4; i++) begin
-  PE pe(.clk(clk),
+  PE_int8 pe(.clk(clk),
         .reset(reset),
         .load(load),
         .i_weight(weights[0][i]),
@@ -51,7 +51,7 @@ module Array (clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val,
     generate
        genvar j;
        for (j = 0; j < 4; j++) begin
- 	 PE pe(.clk(clk),
+ 	 PE_int8 pe(.clk(clk),
                .reset(reset),
  	       .load(load),
  	       .i_weight(weights[1][j]),
@@ -69,7 +69,7 @@ module Array (clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val,
     generate
        genvar k;
        for (k = 0; k < 4; k++) begin
- 	 PE pe(.clk(clk),
+ 	 PE_int8 pe(.clk(clk),
                .reset(reset),
  	       .load(load),
  	       .i_weight(weights[2][k]),
@@ -86,7 +86,7 @@ module Array (clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val,
     generate
        genvar l;
        for (l = 0; l < 4; l++) begin
- 	 PE pe(.clk(clk),
+ 	 PE_int8 pe(.clk(clk),
                .reset(reset),
  	       .load(load),
  	       .i_weight(weights[3][l]),
