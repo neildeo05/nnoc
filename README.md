@@ -5,6 +5,11 @@ This project uses Verilator. If you have verilator installed, you can run `make`
 
 Goals:
 1. [ ] Load, Accumulate, Route in Router (Target router gets two values and adds them based on head flit)
+  - Each router will take in the 32 bit output from the Core (it will either be int32 or float32), depending on the router classification
+  - Should accumulate with provided bias if given, or other tile in order to make up the matmul
+  - Should requantize to proper value (either bfloat16 or int8 depending on core classification if using LLM.int8() quantization routine)
+  - Responsible for spliting into flits
+  - Route "bufferlessly"
 2. [ ] Bufferless routing
 3. [ ] IP FMA unit, or at least a formally verified/tested FMA unit
 

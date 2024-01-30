@@ -27,7 +27,7 @@ module PE_int8 (clk, reset, load, i_weight, i_north, i_west, o_south, o_east);
          if(load) weight <= i_weight;
          else begin
             east_ff <= i_west;
-            south_ff <= (weight * i_west) + i_north;
+            south_ff <= (i_west * weight) + i_north;
          end;
       end
    end

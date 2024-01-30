@@ -21,6 +21,7 @@ int main() {
 
   for(int i = 0; i < 16; i++) {
     to->activation[i] = i+1;
+    printf("%d ",to->activation[i]);
   }
   printf("\n");
   for(int i = 0; i < 4; i++) {
@@ -38,10 +39,6 @@ int main() {
       to->load = 0;
     }
     to->eval();
-    for(int i = 0; i < 4; i++) {
-      printf("%d\n", to->result[i]);
-      
-    }
     trace->dump(cnt);
 
     cnt++;
@@ -49,6 +46,13 @@ int main() {
 
   }
 
+     for(int i = 0; i < 4; i++) {
+       for(int j = 0; j < 4; j++){
+         printf("%d ", to->result_buffer[(4*i)+j]);
+       }
+       printf("\n");
+       
+     }
     trace->close();
     exit(0);
 }
