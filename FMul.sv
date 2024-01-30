@@ -61,6 +61,7 @@ module FMul (a, b,mul_out);
    assign mul_out[30:23] = exponent_product[7:0];
    assign mul_out[22:7] = man_product;
    assign mul_out[6:0] = 7'b0;
+   
 
 
    

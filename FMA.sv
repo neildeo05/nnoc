@@ -66,7 +66,7 @@ module FMA (a, b, c, out, mul_out);
       out[31] = 0;
       out[30:23] = biggerExp;
       out[22:0] = finalMant[23:1];
-      $display("%b\n", out);
+//      $display("%b\n", out);
       
       
 

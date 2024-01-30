@@ -48,7 +48,7 @@ int main() {
 
      for(int i = 0; i < 4; i++) {
        for(int j = 0; j < 4; j++){
-         printf("%d ", to->result_buffer[(4*i)+j]);
+                 printf("%d ", to->result_buffer[(4*i)+j]);
        }
        printf("\n");
        

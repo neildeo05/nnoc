@@ -16,6 +16,7 @@
  */
 
 
+
 module Core_int8 (clk, reset, load, weights,  activation, result, result_buffer);
    input logic clk;
    input logic reset;
