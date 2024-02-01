@@ -32,8 +32,8 @@ int main() {
   to->eval();
   float mul_out = int32_to_float_32(to->mul_out);
   float out = int32_to_float_32(to->out);
-  printf("%f\n", mul_out);
-  printf("%f\n", out);
+  printf("Calculated MUL: %f\n", mul_out);
+  printf("Calculated FMA: %f\n", out);
   //  printf("%f\n", bfloat16_to_float32(result));
   //  printf("%d\n", mul_out);
   exit(0);
