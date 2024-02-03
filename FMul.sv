@@ -43,12 +43,17 @@ module FMul (a, b,mul_out);
 
    assign man_a = {1'b1, a[6:0]};
    assign man_b = {1'b1, b[6:0]};
+   
    //HACK: This is a terrible hack, but for some reason it works (because of the range of values we get). This terrible logic ensures that this isn't exactly a floating point multiply unit at all. Once this is fixed, it will be much better
    //TODO: Subnormal, Correct normalization, NaN, Infinity
    always_comb begin
       exponent_product = ((exponent_a + exponent_b) - 127);
       man_product = man_a * man_b;
-      if (man_product[15] == 1) begin
+      if (exponent_a == 0 | exponent_b == 0) begin
+         man_product = 16'b0;
+         exponent_product = 8'b0;
+      end
+      else if (man_product[15] == 1) begin
          man_product = man_product << 1;
          exponent_product = exponent_product + 1;
       end

@@ -19,9 +19,9 @@ int main() {
   VerilatedVcdC *trace = new VerilatedVcdC;
   to->trace(trace, 5);
   trace->open("waveform.vcd");
-  float weight = 7.21;
-  float north_val = 2.18;
-  float west_val = 3.14;
+  float weight = 1;
+  float north_val = 0;
+  float west_val = 2;
   uint16_t af = float32_to_bfloat16(west_val);
   uint16_t bf = float32_to_bfloat16(weight);
   float should_be = (bfloat16_to_float32(extract_bfloat16_components(af)) * bfloat16_to_float32(extract_bfloat16_components(bf)))+ north_val;

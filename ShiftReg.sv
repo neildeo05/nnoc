@@ -1,13 +1,13 @@
-module ShiftReg_int8 (clk, reset, load, pload, shin, out);
+module ShiftReg #(parameter WIDTH = 8) (clk, reset, load, pload, shin, out);
    input logic clk;
    input logic reset;
    input logic load;
    
-   input logic [7:0] pload;
-   input logic [7:0] shin;
-   logic [7:0]       curr;
+   input logic [WIDTH-1:0] pload;
+   input logic [WIDTH-1:0] shin;
+   logic [WIDTH-1:0]       curr;
    
-   output logic [7:0] out;
+   output logic [WIDTH-1:0] out;
    
 
 

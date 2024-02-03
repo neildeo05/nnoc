@@ -2,13 +2,13 @@
 
 // NOTE: This does WX! PyTorch has it as XW.T, which is equivalent to (WX.T).T, which means if we transpose the inputs ahead of time, the outputs need to be transposed as well. That being said, I don't think we need to do this per-core, rather we can do it when we collect the final matmul (so the routing should do a "transpose" routing)
 
-module ResultBuffer_int8 (clk, reset, result_port, res_buffer);
+module ResultBuffer #(parameter ACCUMULATE = 32) (clk, reset, result_port, res_buffer);
    input logic clk;
    input logic reset;
-   input logic [31:0] result_port [3:0];
-   output logic [31:0] res_buffer [15:0];
+   input logic [ACCUMULATE-1:0] result_port [3:0];
+   output logic [ACCUMULATE-1:0] res_buffer [15:0];
 
-   logic [31:0]        state_registers[3:0];
+   logic [ACCUMULATE-1:0]        state_registers[3:0];
    logic               ready_signals[3:0];
    logic [1:0]         pointers [3:0];
    always @(posedge clk) begin

@@ -4,7 +4,7 @@
 #include <bitset>
 #include "verilated.h"
 #include "verilated_vcd_c.h"
-#include "VPE.h"
+#include "VPE_int8.h"
 
 #define MAX_TIME 25
 uint8_t cnt = 0;
@@ -12,7 +12,7 @@ uint8_t cnt = 0;
 using namespace std;
 
 int main() { 
-  VPE *to = new VPE;
+  VPE_int8 *to = new VPE_int8;
 
   Verilated::traceEverOn(true);
   VerilatedVcdC *trace = new VerilatedVcdC;

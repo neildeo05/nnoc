@@ -3,6 +3,8 @@
 //TODO: Fixed signed number implementation
 // Also there are some issues (could be massive)
 
+//TODO: Instead of returning 00800000 for a 0 number, just return 00000000
+
 module FMA (a, b, c, out, mul_out);
    input logic [15:0] a;
    input logic [15:0] b;
@@ -18,6 +20,7 @@ module FMA (a, b, c, out, mul_out);
    logic [7:0] finalExp;
    logic [24:0] sumMants;
    logic [23:0] finalMant;
+   
    int i;
    logic finalSign;
    logic largerMag;		// Flag that tells us which num is larger in magnitude: 0 for mul_out, 1 for addend
@@ -30,7 +33,7 @@ module FMA (a, b, c, out, mul_out);
    	addExp = c[30:23];
    	mulMant = {1'b1, mul_out[22:0]};
    	addMant = {1'b1, c[22:0]};
-   	
+      
    	if(mulExp < addExp) begin
    		finalExp = addExp;
    		mulMant = mulMant >> (finalExp - mulExp);
@@ -76,7 +79,7 @@ module FMA (a, b, c, out, mul_out);
    	
    	//sumMants = addMant + mulMant; //have to change sign instead of two's complementing
    	
-   	$display("%b", sumMants);
+//   	$display("%b", sumMants);
    	
    	for (i = 0; i < 23; i++) begin //do this routine a max of 23 times in case the answer is zero
 		if (finalMant[23] == 1'b1) begin // if we have encountered a one we are done bc we can make the final silent bit
@@ -85,11 +88,16 @@ module FMA (a, b, c, out, mul_out);
 		else begin // if we haven't encountered a one then we have to continue left shifting to find a one for the silent bit.
 			finalMant = finalMant << 1;
 			finalExp = finalExp - 1;
-			$display("shifted left");
+//			$display("shifted left");
 		end
      	end
      	finalMant = finalMant << 1;
      	//finalExp = finalExp - 1;
+        //"rounding" denormalized values like 1e-34 (which is returned for some 0+n computations, down to zero
+        if(mul_out == 0 && addExp == 0) begin
+           finalMant = 24'b0;
+           finalExp = 8'b0;
+        end
      	out = {~finalSign, finalExp, finalMant[23:1]}; //need to do sign bit stuff	
    end
    
