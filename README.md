@@ -3,6 +3,8 @@
 # Running
 This project uses Verilator. If you have verilator installed, you can run `make` in the `tests/` directory, and look at `waveform.vcd`
 
+You can also use yosys for synthesis. Go to the `synth/` directory, and run `make`. It requires sv2v and yosys to be installed
+
 Goals:
 1. [ ] Load, Accumulate, Route in Router (Target router gets two values and adds them based on head flit)
   - Each router will take in the 32 bit output from the Core (it will either be int32 or float32), depending on the router classification
