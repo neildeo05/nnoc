@@ -1,3 +1,5 @@
 a.out
 ./QuantizationRoutine.cpp
 __pycache__/
+synth.v
+

@@ -1,5 +1,4 @@
-read -sv ./Core.v
+read -sv ./Core.v ./FMA.v ./FMul.v ./PE_bf16.v ./PE_int8.v ./ResultBuffer.v ./ShiftBuffer.v ./ShiftReg.v
 hierarchy -top Core
 proc; opt; techmap; opt
-show
 write_verilog synth.v
