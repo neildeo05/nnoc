@@ -1,0 +1,4 @@
+read -sv ./Core.v
+hierarchy -top Core
+proc; opt; techmap; opt
+write_verilog 

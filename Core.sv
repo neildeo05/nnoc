@@ -23,8 +23,8 @@ module Core #(parameter WIDTH = 16, parameter ACCUMULATE = 32) (clk, reset, load
    input logic load;
    
    
-   input logic [WIDTH-1:0] weights [3:0][3:0]; // 15 el vector of weights
    input logic [WIDTH-1:0] activation [15:0];
+   input logic [WIDTH-1:0] weights [3:0][3:0]; // 15 el vector of weights
    output logic [ACCUMULATE-1:0] result [3:0];
    output logic [ACCUMULATE-1:0] result_buffer [15:0];
    
