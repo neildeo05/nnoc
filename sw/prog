@@ -1,0 +1,15 @@
+python3 tiled_network.py
+// To change:
+//   * weight_idx is the placed weight_idx in the mesh
+//   * x_tile is the dest of the accumulate tile
+LOAD OPS (Load all weight tiles)
+
+Accumulate ops
+Accumulate(dest=(0, 0), x_tile=(0, 0), weight_idx=(0, 0))
+Accumulate(dest=(0, 1), x_tile=(0, 0), weight_idx=(0, 1))
+Accumulate(dest=(0, 2), x_tile=(0, 0), weight_idx=(0, 2))
+END
+Accumulate(dest=(0, 0), x_tile=(0, 0), weight_idx=(0, 0))
+Accumulate(dest=(0, 0), x_tile=(0, 1), weight_idx=(1, 0))
+Accumulate(dest=(0, 0), x_tile=(0, 2), weight_idx=(2, 0))
+END

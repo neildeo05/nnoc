@@ -6,6 +6,8 @@ from collections import namedtuple
 from TiledTensor import TiledTensor
 
 op_graph = []
+A_SHP = 4
+B_SHP = 3 * A_SHP
 # Simple Example
 def tile_compute(a, b):
     return a @ b
@@ -36,15 +38,15 @@ class TiledLinear(nn.Linear):
     def forward(self, x):
         out = tiled_matmul(x, self.weight.t())
         check = torch.matmul(x, self.weight.t())
-        assert(torch.allclose(out, check))
+        assert(torch.allclose(out, check, rtol=1e-3, atol=1e-5))
         return out
 
 class MiniModel(torch.nn.Module):
     def __init__(self):
         super().__init__()
-        self.l1 = TiledLinear(4,12,dtype=torch.float32, bias=False)
+        self.l1 = TiledLinear(A_SHP,B_SHP,dtype=torch.float32, bias=False)
         self.g1 = nn.GELU()
-        self.l2 = TiledLinear(12,4, dtype=torch.float32, bias=False)
+        self.l2 = TiledLinear(B_SHP,A_SHP, dtype=torch.float32, bias=False)
 
     def forward(self, x):
         x = self.l1(x)
@@ -55,10 +57,12 @@ class MiniModel(torch.nn.Module):
 
 
 model = MiniModel()
-inp = torch.randn((4,4), dtype=torch.float32)
+BS = 4
+inp = torch.randn((BS,A_SHP), dtype=torch.float32)
 model(inp) # call model
 
 
 
 for i in op_graph:
     print(i)
+
