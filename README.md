@@ -6,14 +6,11 @@ This project uses Verilator. If you have verilator installed, you can run `make`
 You can also use yosys for synthesis. Go to the `synth/` directory, and run `make`. It requires sv2v and yosys to be installed
 
 Goals:
-1. [ ] Load, Accumulate, Route in Router (Target router gets two values and adds them based on head flit)
-  - Each router will take in the 32 bit output from the Core (it will either be int32 or float32), depending on the router classification
-  - Should accumulate with provided bias if given, or other tile in order to make up the matmul
-  - Should requantize to proper value (either bfloat16 or int8 depending on core classification if using LLM.int8() quantization routine)
-  - Responsible for spliting into flits
-  - Route "bufferlessly"
-2. [ ] Bufferless routing
-3. [ ] IP FMA unit, or at least a formally verified/tested FMA unit
+0. [ ] Inputs to the core go to a FIFO, then are accumulated, and sent to the array
+1. [ ] Building a Load/Store unit to communicate to cores
+2. [ ] Porgammable Interconnect between cores (route tiles in a mesh)
+3. [ ] NoC between groups, where groups get a subgraph, and can send outputs of subgraphs to next subgraph (route subgraphs in a NoC)
+4. [ ] Add multiple clock domains based on rigorous testing
 
 
 

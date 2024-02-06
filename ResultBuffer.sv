@@ -16,6 +16,8 @@ module ResultBuffer #(parameter ACCUMULATE = 32) (clk, reset, result_port, res_b
          state_registers[0] <= 0; state_registers[1] <= 0; state_registers[2] <= 0; state_registers[3] <= 0;
          ready_signals[0] <= 0; ready_signals[1] <= 0; ready_signals[2] <= 0; ready_signals[3] <= 0;
          pointers[0] <= 0; pointers[1] <= 0; pointers[2] <= 0; pointers[3] <= 0;
+         for (int i = 0; i < 16; i++) res_buffer[i] <= 0;
+         
       end
       // Load state registers
       state_registers <= result_port;

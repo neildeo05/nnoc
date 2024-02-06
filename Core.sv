@@ -17,11 +17,11 @@
 
 
 
-module Core #(parameter WIDTH = 16, parameter ACCUMULATE = 32) (clk, reset, load, weights,  activation, result, result_buffer);
+module Core #(parameter WIDTH = 16, parameter ACCUMULATE = 32, parameter NUM_INP_TILES = 1) (clk, reset, weight_load, act_load, weights,  activation, result, result_buffer);
    input logic clk;
    input logic reset;
-   input logic load;
-   
+   input logic weight_load;
+   input logic act_load;
    
    input logic [WIDTH-1:0] activation [15:0];
    input logic [WIDTH-1:0] weights [3:0][3:0]; // 15 el vector of weights
@@ -33,12 +33,13 @@ module Core #(parameter WIDTH = 16, parameter ACCUMULATE = 32) (clk, reset, load
    logic [WIDTH-1:0] row2_val;
    logic [WIDTH-1:0] row3_val;
    logic [WIDTH-1:0] row4_val;
-   ShiftBuffer #(.WIDTH(WIDTH)) shb (clk, reset, load, activation, row1_val, row2_val, row3_val, row4_val);
+//   TileMem #(.WIDTH(WIDTH), .ACCUMULATE(ACCUMULATE)) (clk, reset, act_load, 
+   ShiftBuffer #(.WIDTH(WIDTH)) shb (clk, reset, weight_load, activation, row1_val, row2_val, row3_val, row4_val);
 
-   Array #(.WIDTH(WIDTH), .ACCUMULATE(ACCUMULATE)) arr(clk, reset, load, weights, row1_val, row2_val, row3_val, row4_val, result);
+   Array #(.WIDTH(WIDTH), .ACCUMULATE(ACCUMULATE)) arr(clk, reset, weight_load, weights, row1_val, row2_val, row3_val, row4_val, result);
 
 
-   ResultBuffer #(.ACCUMULATE(ACCUMULATE)) rb(clk, reset, result, result_buffer);
+   ResultBuffer #(.ACCUMULATE(ACCUMULATE)) rb(clk, weight_load, result, result_buffer);
 
 
 

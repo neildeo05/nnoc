@@ -2,4 +2,5 @@ a.out
 ./QuantizationRoutine.cpp
 __pycache__/
 synth.v
-
+out
+prog

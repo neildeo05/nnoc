@@ -13,6 +13,9 @@ pe_i8:
 	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build PETest.cpp ../PE_int8.sv
 	./obj_dir/VPE_int8
 
+tile_accum:
+	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build TileAccumTest.cpp ../TileAccumulator.sv
+	./obj_dir/VTileAccumulator
 
 dequant:
 	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build tb_dequant.cpp ../dequant.sv 

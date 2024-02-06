@@ -7,7 +7,7 @@
 #include "verilated_vcd_c.h"
 #include "VCore.h"
 
-#define MAX_TIME 40
+#define MAX_TIME 100
 #define PE_TYPE 16
 uint8_t cnt = 0;
 
@@ -53,12 +53,18 @@ int main() {
      printf("\n");
   }
   
-  to->load = 1;
+  to->weight_load = 1;
   while (cnt != MAX_TIME) {
-    // have to wait to laod the weight
+    // have to wait to load the weight
     if(cnt > 1) {
-      to->load = 0;
+      if (cnt == 40 || cnt == 41) {
+        to->weight_load = 1;
+      }
+      else {
+        to->weight_load = 0;
+      }
     }
+
     to->eval();
     trace->dump(cnt);
 
