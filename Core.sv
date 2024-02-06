@@ -28,6 +28,7 @@ module Core #(parameter WIDTH = 16, parameter ACCUMULATE = 32, parameter NUM_INP
    output logic [ACCUMULATE-1:0] result [3:0];
    output logic [ACCUMULATE-1:0] result_buffer [15:0];
    
+   
 
    logic [WIDTH-1:0] row1_val;
    logic [WIDTH-1:0] row2_val;
@@ -35,15 +36,12 @@ module Core #(parameter WIDTH = 16, parameter ACCUMULATE = 32, parameter NUM_INP
    logic [WIDTH-1:0] row4_val;
 //   TileMem #(.WIDTH(WIDTH), .ACCUMULATE(ACCUMULATE)) (clk, reset, act_load, 
    ShiftBuffer #(.WIDTH(WIDTH)) shb (clk, reset, weight_load, activation, row1_val, row2_val, row3_val, row4_val);
-
    Array #(.WIDTH(WIDTH), .ACCUMULATE(ACCUMULATE)) arr(clk, reset, weight_load, weights, row1_val, row2_val, row3_val, row4_val, result);
-
-
    ResultBuffer #(.ACCUMULATE(ACCUMULATE)) rb(clk, weight_load, result, result_buffer);
 
 
 
-   // Router module should take the result and quantize it back to a 8 bit num
+   
    
    
 

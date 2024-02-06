@@ -31,6 +31,7 @@ module PE_bf16 (clk, reset, load, i_weight, i_north, i_west, o_south, o_east);
       end
       else begin
          if(load) weight <= i_weight;
+         // potentially make act_load and wait on act_load
          else begin
             east_ff <= i_west;
             south_ff <= fma_value;

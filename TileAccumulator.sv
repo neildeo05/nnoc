@@ -2,23 +2,17 @@ module TileAccumulator #(parameter WIDTH=16, parameter MAX_INPUT_TILES = 4) (clk
 
    input logic clk;
    input logic reset;
-   input logic act_load;
+   output logic act_load;
    input logic [3:0] num_input_tiles;
    input logic [WIDTH-1:0] activation_input [15:0];
    
-   output logic             ready;
 
    /*
-    Collect inputs in a tile queue while act_load is high
+    Collect inputs in a tile queue while act_load is low
     When act_load is low, push from queue to accumulator
-    When done accumulating, set ready signal high
+    When done accumulating, set act_load high
     */
+
 
    
 endmodule; // TileAccumulator 
-
-   
-
-
-
- 

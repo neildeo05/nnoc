@@ -59,9 +59,9 @@ $timescale 1ps $end
   $var wire 16 d% weights[3][2] [15:0] $end
   $var wire 16 e% weights[3][3] [15:0] $end
   $scope module Core $end
-   $var wire 32 =& ACCUMULATE [31:0] $end
-   $var wire 32 >& NUM_INP_TILES [31:0] $end
-   $var wire 32 <& WIDTH [31:0] $end
+   $var wire 32 >& ACCUMULATE [31:0] $end
+   $var wire 32 ?& NUM_INP_TILES [31:0] $end
+   $var wire 32 =& WIDTH [31:0] $end
    $var wire  1 E% act_load $end
    $var wire 16 F% activation[0] [15:0] $end
    $var wire 16 P% activation[10] [15:0] $end
@@ -80,6 +80,7 @@ $timescale 1ps $end
    $var wire 16 N% activation[8] [15:0] $end
    $var wire 16 O% activation[9] [15:0] $end
    $var wire  1 B% clk $end
+   $var wire  1 z% load $end
    $var wire  1 C% reset $end
    $var wire 32 f% result[0] [31:0] $end
    $var wire 32 g% result[1] [31:0] $end
@@ -123,8 +124,8 @@ $timescale 1ps $end
    $var wire 16 d% weights[3][2] [15:0] $end
    $var wire 16 e% weights[3][3] [15:0] $end
    $scope module arr $end
-    $var wire 32 =& ACCUMULATE [31:0] $end
-    $var wire 32 <& WIDTH [31:0] $end
+    $var wire 32 >& ACCUMULATE [31:0] $end
+    $var wire 32 =& WIDTH [31:0] $end
     $var wire  1 B% clk $end
     $var wire 32 ' col_interconnects[0][0] [31:0] $end
     $var wire 32 ( col_interconnects[0][1] [31:0] $end
@@ -146,7 +147,7 @@ $timescale 1ps $end
     $var wire 32 8 col_interconnects[4][1] [31:0] $end
     $var wire 32 9 col_interconnects[4][2] [31:0] $end
     $var wire 32 : col_interconnects[4][3] [31:0] $end
-    $var wire  1 D% load $end
+    $var wire  1 z% load $end
     $var wire  1 C% reset $end
     $var wire 32 f% result_buffer[0] [31:0] $end
     $var wire 32 g% result_buffer[1] [31:0] $end
@@ -199,9 +200,9 @@ $timescale 1ps $end
        $var wire 16 +! east_ff [15:0] $end
        $var wire 32 .! fma_value [31:0] $end
        $var wire 32 *! i_north [31:0] $end
-       $var wire 16 ,& i_weight [15:0] $end
+       $var wire 16 -& i_weight [15:0] $end
        $var wire 16 # i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 +! o_east [15:0] $end
        $var wire 32 ,! o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -248,9 +249,9 @@ $timescale 1ps $end
        $var wire 16 D! east_ff [15:0] $end
        $var wire 32 G! fma_value [31:0] $end
        $var wire 32 C! i_north [31:0] $end
-       $var wire 16 -& i_weight [15:0] $end
+       $var wire 16 .& i_weight [15:0] $end
        $var wire 16 +! i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 D! o_east [15:0] $end
        $var wire 32 E! o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -297,9 +298,9 @@ $timescale 1ps $end
        $var wire 16 ]! east_ff [15:0] $end
        $var wire 32 `! fma_value [31:0] $end
        $var wire 32 \! i_north [31:0] $end
-       $var wire 16 .& i_weight [15:0] $end
+       $var wire 16 /& i_weight [15:0] $end
        $var wire 16 D! i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 ]! o_east [15:0] $end
        $var wire 32 ^! o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -346,9 +347,9 @@ $timescale 1ps $end
        $var wire 16 v! east_ff [15:0] $end
        $var wire 32 y! fma_value [31:0] $end
        $var wire 32 u! i_north [31:0] $end
-       $var wire 16 /& i_weight [15:0] $end
+       $var wire 16 0& i_weight [15:0] $end
        $var wire 16 ]! i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 v! o_east [15:0] $end
        $var wire 32 w! o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -395,9 +396,9 @@ $timescale 1ps $end
        $var wire 16 1" east_ff [15:0] $end
        $var wire 32 4" fma_value [31:0] $end
        $var wire 32 0" i_north [31:0] $end
-       $var wire 16 0& i_weight [15:0] $end
+       $var wire 16 1& i_weight [15:0] $end
        $var wire 16 $ i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 1" o_east [15:0] $end
        $var wire 32 2" o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -444,9 +445,9 @@ $timescale 1ps $end
        $var wire 16 J" east_ff [15:0] $end
        $var wire 32 M" fma_value [31:0] $end
        $var wire 32 I" i_north [31:0] $end
-       $var wire 16 1& i_weight [15:0] $end
+       $var wire 16 2& i_weight [15:0] $end
        $var wire 16 1" i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 J" o_east [15:0] $end
        $var wire 32 K" o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -493,9 +494,9 @@ $timescale 1ps $end
        $var wire 16 c" east_ff [15:0] $end
        $var wire 32 f" fma_value [31:0] $end
        $var wire 32 b" i_north [31:0] $end
-       $var wire 16 2& i_weight [15:0] $end
+       $var wire 16 3& i_weight [15:0] $end
        $var wire 16 J" i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 c" o_east [15:0] $end
        $var wire 32 d" o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -542,9 +543,9 @@ $timescale 1ps $end
        $var wire 16 |" east_ff [15:0] $end
        $var wire 32 !# fma_value [31:0] $end
        $var wire 32 {" i_north [31:0] $end
-       $var wire 16 3& i_weight [15:0] $end
+       $var wire 16 4& i_weight [15:0] $end
        $var wire 16 c" i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 |" o_east [15:0] $end
        $var wire 32 }" o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -591,9 +592,9 @@ $timescale 1ps $end
        $var wire 16 7# east_ff [15:0] $end
        $var wire 32 :# fma_value [31:0] $end
        $var wire 32 6# i_north [31:0] $end
-       $var wire 16 4& i_weight [15:0] $end
+       $var wire 16 5& i_weight [15:0] $end
        $var wire 16 % i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 7# o_east [15:0] $end
        $var wire 32 8# o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -640,9 +641,9 @@ $timescale 1ps $end
        $var wire 16 P# east_ff [15:0] $end
        $var wire 32 S# fma_value [31:0] $end
        $var wire 32 O# i_north [31:0] $end
-       $var wire 16 5& i_weight [15:0] $end
+       $var wire 16 6& i_weight [15:0] $end
        $var wire 16 7# i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 P# o_east [15:0] $end
        $var wire 32 Q# o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -689,9 +690,9 @@ $timescale 1ps $end
        $var wire 16 i# east_ff [15:0] $end
        $var wire 32 l# fma_value [31:0] $end
        $var wire 32 h# i_north [31:0] $end
-       $var wire 16 6& i_weight [15:0] $end
+       $var wire 16 7& i_weight [15:0] $end
        $var wire 16 P# i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 i# o_east [15:0] $end
        $var wire 32 j# o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -738,9 +739,9 @@ $timescale 1ps $end
        $var wire 16 $$ east_ff [15:0] $end
        $var wire 32 '$ fma_value [31:0] $end
        $var wire 32 #$ i_north [31:0] $end
-       $var wire 16 7& i_weight [15:0] $end
+       $var wire 16 8& i_weight [15:0] $end
        $var wire 16 i# i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 $$ o_east [15:0] $end
        $var wire 32 %$ o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -787,9 +788,9 @@ $timescale 1ps $end
        $var wire 16 =$ east_ff [15:0] $end
        $var wire 32 @$ fma_value [31:0] $end
        $var wire 32 <$ i_north [31:0] $end
-       $var wire 16 8& i_weight [15:0] $end
+       $var wire 16 9& i_weight [15:0] $end
        $var wire 16 & i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 =$ o_east [15:0] $end
        $var wire 32 >$ o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -836,9 +837,9 @@ $timescale 1ps $end
        $var wire 16 V$ east_ff [15:0] $end
        $var wire 32 Y$ fma_value [31:0] $end
        $var wire 32 U$ i_north [31:0] $end
-       $var wire 16 9& i_weight [15:0] $end
+       $var wire 16 :& i_weight [15:0] $end
        $var wire 16 =$ i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 V$ o_east [15:0] $end
        $var wire 32 W$ o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -885,9 +886,9 @@ $timescale 1ps $end
        $var wire 16 o$ east_ff [15:0] $end
        $var wire 32 r$ fma_value [31:0] $end
        $var wire 32 n$ i_north [31:0] $end
-       $var wire 16 :& i_weight [15:0] $end
+       $var wire 16 ;& i_weight [15:0] $end
        $var wire 16 V$ i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 o$ o_east [15:0] $end
        $var wire 32 p$ o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -934,9 +935,9 @@ $timescale 1ps $end
        $var wire 16 *% east_ff [15:0] $end
        $var wire 32 -% fma_value [31:0] $end
        $var wire 32 )% i_north [31:0] $end
-       $var wire 16 ;& i_weight [15:0] $end
+       $var wire 16 <& i_weight [15:0] $end
        $var wire 16 o$ i_west [15:0] $end
-       $var wire  1 D% load $end
+       $var wire  1 z% load $end
        $var wire 16 *% o_east [15:0] $end
        $var wire 32 +% o_south [31:0] $end
        $var wire  1 C% reset $end
@@ -978,7 +979,7 @@ $timescale 1ps $end
     $upscope $end
    $upscope $end
    $scope module rb $end
-    $var wire 32 =& ACCUMULATE [31:0] $end
+    $var wire 32 >& ACCUMULATE [31:0] $end
     $var wire  1 B% clk $end
     $var wire  2 W pointers[0] [1:0] $end
     $var wire  2 X pointers[1] [1:0] $end
@@ -1004,7 +1005,7 @@ $timescale 1ps $end
     $var wire 32 q% res_buffer[7] [31:0] $end
     $var wire 32 r% res_buffer[8] [31:0] $end
     $var wire 32 s% res_buffer[9] [31:0] $end
-    $var wire  1 D% reset $end
+    $var wire  1 z% reset $end
     $var wire 32 f% result_port[0] [31:0] $end
     $var wire 32 g% result_port[1] [31:0] $end
     $var wire 32 h% result_port[2] [31:0] $end
@@ -1018,7 +1019,7 @@ $timescale 1ps $end
     $upscope $end
    $upscope $end
    $scope module shb $end
-    $var wire 32 <& WIDTH [31:0] $end
+    $var wire 32 =& WIDTH [31:0] $end
     $var wire 16 F% activation[0] [15:0] $end
     $var wire 16 P% activation[10] [15:0] $end
     $var wire 16 Q% activation[11] [15:0] $end
@@ -1036,7 +1037,7 @@ $timescale 1ps $end
     $var wire 16 N% activation[8] [15:0] $end
     $var wire 16 O% activation[9] [15:0] $end
     $var wire  1 B% clk $end
-    $var wire  1 D% load $end
+    $var wire  1 z% load $end
     $var wire  1 C% reset $end
     $var wire 16 # row1_val [15:0] $end
     $var wire 16 $ row2_val [15:0] $end
@@ -1070,253 +1071,253 @@ $timescale 1ps $end
     $var wire 16 u shift_row_4_wires[7] [15:0] $end
     $scope module genblk1[1] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 v curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 v out [15:0] $end
-      $var wire 16 z% pload [15:0] $end
+      $var wire 16 {% pload [15:0] $end
       $var wire  1 C% reset $end
-      $var wire 16 ?& shin [15:0] $end
+      $var wire 16 @& shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk1[2] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 w curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 w out [15:0] $end
-      $var wire 16 {% pload [15:0] $end
+      $var wire 16 |% pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 v shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk1[3] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 x curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 x out [15:0] $end
-      $var wire 16 |% pload [15:0] $end
+      $var wire 16 }% pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 w shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk1[4] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 # curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 # out [15:0] $end
-      $var wire 16 }% pload [15:0] $end
+      $var wire 16 ~% pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 x shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk2[1] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 y curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 y out [15:0] $end
-      $var wire 16 ~% pload [15:0] $end
+      $var wire 16 !& pload [15:0] $end
       $var wire  1 C% reset $end
-      $var wire 16 ?& shin [15:0] $end
+      $var wire 16 @& shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk2[2] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 z curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 z out [15:0] $end
-      $var wire 16 !& pload [15:0] $end
+      $var wire 16 "& pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 y shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk2[3] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 { curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 { out [15:0] $end
-      $var wire 16 "& pload [15:0] $end
+      $var wire 16 #& pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 z shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk2[4] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 | curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 | out [15:0] $end
-      $var wire 16 #& pload [15:0] $end
+      $var wire 16 $& pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 { shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk3[1] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 } curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 } out [15:0] $end
-      $var wire 16 $& pload [15:0] $end
+      $var wire 16 %& pload [15:0] $end
       $var wire  1 C% reset $end
-      $var wire 16 ?& shin [15:0] $end
+      $var wire 16 @& shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk3[2] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 ~ curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 ~ out [15:0] $end
-      $var wire 16 %& pload [15:0] $end
+      $var wire 16 && pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 } shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk3[3] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 !! curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 !! out [15:0] $end
-      $var wire 16 && pload [15:0] $end
+      $var wire 16 '& pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 ~ shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk3[4] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 "! curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 "! out [15:0] $end
-      $var wire 16 '& pload [15:0] $end
+      $var wire 16 (& pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 !! shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk4[1] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 #! curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 #! out [15:0] $end
-      $var wire 16 (& pload [15:0] $end
+      $var wire 16 )& pload [15:0] $end
       $var wire  1 C% reset $end
-      $var wire 16 ?& shin [15:0] $end
+      $var wire 16 @& shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk4[2] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 $! curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 $! out [15:0] $end
-      $var wire 16 )& pload [15:0] $end
+      $var wire 16 *& pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 #! shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk4[3] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 %! curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 %! out [15:0] $end
-      $var wire 16 *& pload [15:0] $end
+      $var wire 16 +& pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 $! shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module genblk4[4] $end
      $scope module shr $end
-      $var wire 32 <& WIDTH [31:0] $end
+      $var wire 32 =& WIDTH [31:0] $end
       $var wire  1 B% clk $end
       $var wire 16 &! curr [15:0] $end
-      $var wire  1 D% load $end
+      $var wire  1 z% load $end
       $var wire 16 &! out [15:0] $end
-      $var wire 16 +& pload [15:0] $end
+      $var wire 16 ,& pload [15:0] $end
       $var wire  1 C% reset $end
       $var wire 16 %! shin [15:0] $end
      $upscope $end
     $upscope $end
     $scope module shr_1_0 $end
-     $var wire 32 <& WIDTH [31:0] $end
+     $var wire 32 =& WIDTH [31:0] $end
      $var wire  1 B% clk $end
      $var wire 16 $ curr [15:0] $end
-     $var wire  1 D% load $end
+     $var wire  1 z% load $end
      $var wire 16 $ out [15:0] $end
-     $var wire 16 ?& pload [15:0] $end
+     $var wire 16 @& pload [15:0] $end
      $var wire  1 C% reset $end
      $var wire 16 | shin [15:0] $end
     $upscope $end
     $scope module shr_2_0 $end
-     $var wire 32 <& WIDTH [31:0] $end
+     $var wire 32 =& WIDTH [31:0] $end
      $var wire  1 B% clk $end
      $var wire 16 '! curr [15:0] $end
-     $var wire  1 D% load $end
+     $var wire  1 z% load $end
      $var wire 16 '! out [15:0] $end
-     $var wire 16 ?& pload [15:0] $end
+     $var wire 16 @& pload [15:0] $end
      $var wire  1 C% reset $end
      $var wire 16 "! shin [15:0] $end
     $upscope $end
     $scope module shr_2_1 $end
-     $var wire 32 <& WIDTH [31:0] $end
+     $var wire 32 =& WIDTH [31:0] $end
      $var wire  1 B% clk $end
      $var wire 16 % curr [15:0] $end
-     $var wire  1 D% load $end
+     $var wire  1 z% load $end
      $var wire 16 % out [15:0] $end
-     $var wire 16 ?& pload [15:0] $end
+     $var wire 16 @& pload [15:0] $end
      $var wire  1 C% reset $end
      $var wire 16 '! shin [15:0] $end
     $upscope $end
     $scope module shr_3_0 $end
-     $var wire 32 <& WIDTH [31:0] $end
+     $var wire 32 =& WIDTH [31:0] $end
      $var wire  1 B% clk $end
      $var wire 16 (! curr [15:0] $end
-     $var wire  1 D% load $end
+     $var wire  1 z% load $end
      $var wire 16 (! out [15:0] $end
-     $var wire 16 ?& pload [15:0] $end
+     $var wire 16 @& pload [15:0] $end
      $var wire  1 C% reset $end
      $var wire 16 &! shin [15:0] $end
     $upscope $end
     $scope module shr_3_1 $end
-     $var wire 32 <& WIDTH [31:0] $end
+     $var wire 32 =& WIDTH [31:0] $end
      $var wire  1 B% clk $end
      $var wire 16 )! curr [15:0] $end
-     $var wire  1 D% load $end
+     $var wire  1 z% load $end
      $var wire 16 )! out [15:0] $end
-     $var wire 16 ?& pload [15:0] $end
+     $var wire 16 @& pload [15:0] $end
      $var wire  1 C% reset $end
      $var wire 16 (! shin [15:0] $end
     $upscope $end
     $scope module shr_3_2 $end
-     $var wire 32 <& WIDTH [31:0] $end
+     $var wire 32 =& WIDTH [31:0] $end
      $var wire  1 B% clk $end
      $var wire 16 & curr [15:0] $end
-     $var wire  1 D% load $end
+     $var wire  1 z% load $end
      $var wire 16 & out [15:0] $end
-     $var wire 16 ?& pload [15:0] $end
+     $var wire 16 @& pload [15:0] $end
      $var wire  1 C% reset $end
      $var wire 16 )! shin [15:0] $end
     $upscope $end
@@ -1884,42 +1885,43 @@ b00000000000000000000000000000000 v%
 b00000000000000000000000000000000 w%
 b00000000000000000000000000000000 x%
 b00000000000000000000000000000000 y%
-b0100000101010000 z%
-b0100000101100000 {%
-b0100000101110000 |%
-b0100000110000000 }%
-b0100000100010000 ~%
-b0100000100100000 !&
-b0100000100110000 "&
-b0100000101000000 #&
-b0100000010100000 $&
-b0100000011000000 %&
-b0100000011100000 &&
-b0100000100000000 '&
-b0011111110000000 (&
-b0100000000000000 )&
-b0100000001000000 *&
-b0100000010000000 +&
-b0011111110000000 ,&
-b0100000000000000 -&
-b0100000001000000 .&
-b0100000010000000 /&
-b0100000000000000 0&
-b0100000010000000 1&
-b0100000011000000 2&
-b0100000100000000 3&
-b0100000001000000 4&
-b0100000011000000 5&
-b0100000100010000 6&
-b0100000101000000 7&
-b0100000010000000 8&
-b0100000100000000 9&
-b0100000101000000 :&
-b0100000110000000 ;&
-b00000000000000000000000000010000 <&
-b00000000000000000000000000100000 =&
-b00000000000000000000000000000001 >&
-b0000000000000000 ?&
+1z%
+b0100000101010000 {%
+b0100000101100000 |%
+b0100000101110000 }%
+b0100000110000000 ~%
+b0100000100010000 !&
+b0100000100100000 "&
+b0100000100110000 #&
+b0100000101000000 $&
+b0100000010100000 %&
+b0100000011000000 &&
+b0100000011100000 '&
+b0100000100000000 (&
+b0011111110000000 )&
+b0100000000000000 *&
+b0100000001000000 +&
+b0100000010000000 ,&
+b0011111110000000 -&
+b0100000000000000 .&
+b0100000001000000 /&
+b0100000010000000 0&
+b0100000000000000 1&
+b0100000010000000 2&
+b0100000011000000 3&
+b0100000100000000 4&
+b0100000001000000 5&
+b0100000011000000 6&
+b0100000100010000 7&
+b0100000101000000 8&
+b0100000010000000 9&
+b0100000100000000 :&
+b0100000101000000 ;&
+b0100000110000000 <&
+b00000000000000000000000000010000 =&
+b00000000000000000000000000100000 >&
+b00000000000000000000000000000001 ?&
+b0000000000000000 @&
 #1
 b0100000110000000 #
 b0100000110000000 ;
@@ -2006,6 +2008,7 @@ b10000011 =%
 #2
 0B%
 0D%
+0z%
 #3
 b0100000101110000 #
 b0100000101000000 $
@@ -3484,6 +3487,7 @@ b01000011010010000000000000000000 y%
 #40
 0B%
 1D%
+1z%
 #41
 b0100000110000000 #
 b0100000110000000 ;
@@ -3550,6 +3554,7 @@ b00000000000000000000000000000000 y%
 #42
 0B%
 0D%
+0z%
 #43
 b0100000101110000 #
 b0100000101000000 $
