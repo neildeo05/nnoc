@@ -19,16 +19,15 @@ int main() {
   to->trace(trace, 5);
   trace->open("waveform_tile.vcd");
 
-  for(int i = 0 ; i < 4; i++) {
-    for (int j = 0; j < 16; j++) {
-      to->activation_inputs[i][j] = j;
-    }
+  for(int i = 0 ; i < 15; i++) {
+    to->activation_input[i] = i;
   }
   
   to->act_load = 1;
   while (cnt != MAX_TIME) {
     if(cnt > 1) {
-      to->act_load = 0;
+      if(cnt == 3 || cnt == 5 || cnt == 11) to->act_load = 1;
+      else to->act_load = 0;
     }
     to->eval();
     trace->dump(cnt);
