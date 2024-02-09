@@ -1,0 +1,3 @@
+[submodule "Fullsend-Core"]
+	path = Fullsend-Core
+	url = git@github.com:neildeo05/Fullsend-Core.git
