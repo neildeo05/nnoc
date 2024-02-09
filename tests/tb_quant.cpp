@@ -16,14 +16,14 @@ float int32_to_float_32(uint32_t val) {
 
  int main (int argc, char** argv, char** env) {
  	Vquantization *vq = new Vquantization;
- 	float sc = 9;
-	float iFP = 8;
+ 	float sc = (1.23);
+	float iFP = 2.392;
  	Verilated::traceEverOn(true);
  	VerilatedVcdC *l_trace = new VerilatedVcdC;
  	vq->trace(l_trace, 5);
  	l_trace->open("qWaveform.vcd");
  	
-	vq->scale = *((uint32_t*)(&sc));
+	vq->scale_inv = *((uint32_t*)(&sc));
 	vq->inputFP = *((uint32_t*)(&iFP));
 
  	while (cnt < MAX_TIME) {
@@ -35,7 +35,7 @@ float int32_to_float_32(uint32_t val) {
 	int8_t output = vq->outputInt8;
 	uint32_t div = vq->scaledFp32;
 
-	printf("Actual: %d\n", (int8_t)(256*(iFP/sc)));
+	printf("Actual: %f\n", ((iFP*sc)));
 	printf("Calculated: %d\n", output);
 	printf("Division: %f\n", int32_to_float_32(div));
  	l_trace->close();
