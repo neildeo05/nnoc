@@ -1,0 +1,13 @@
+# DESCRIPTION: Verilator output: Timestamp data for --skip-identical.  Delete at will.
+C "--cc quantization.sv"
+S   7892640   263190  1706540027   114725491  1598506306           0 "/usr/bin/verilator_bin"
+T      8133   681858  1706973604   150524381  1706973604   150524381 "obj_dir/Vquantization.cpp"
+T      3102   681856  1706973604   150524381  1706973604   150524381 "obj_dir/Vquantization.h"
+T      1462   681860  1706973604   154524474  1706973604   154524474 "obj_dir/Vquantization.mk"
+T      2255   681857  1706973604   150524381  1706973604   150524381 "obj_dir/Vquantization__Slow.cpp"
+T       574   681853  1706973604   150524381  1706973604   150524381 "obj_dir/Vquantization__Syms.cpp"
+T       830   681854  1706973604   150524381  1706973604   150524381 "obj_dir/Vquantization__Syms.h"
+T       297   681852  1706973604   154524474  1706973604   154524474 "obj_dir/Vquantization__ver.d"
+T         0        0  1706973604   154524474  1706973604   154524474 "obj_dir/Vquantization__verFiles.dat"
+T      1574   681859  1706973604   150524381  1706973604   150524381 "obj_dir/Vquantization_classes.mk"
+S      2289   679982  1706973601   366460013  1706973601   350459643 "quantization.sv"

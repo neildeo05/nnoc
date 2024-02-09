@@ -20,3 +20,7 @@ tile_accum:
 dequant:
 	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build tb_dequant.cpp ../dequant.sv 
 	./obj_dir/Vdequant
+	
+quantization:
+	verilator -I../ -Wall -Wno-fatal --trace --cc --exe --build tb_quant.cpp ../quantization.sv 
+	./obj_dir/Vquantization
