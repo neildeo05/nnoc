@@ -1,6 +1,6 @@
 module quantization (
 	input logic [31:0] inputFP,
-	input logic [31:0] scale_inv,
+	input logic [31:0] scale,
 	output logic [7:0] outputInt8,
 	output logic [31:0] scaledFp32
 );
@@ -18,9 +18,7 @@ module quantization (
 	logic [22:0] manScale;
 	logic [31:0] scalereg;
 	
-	//   fdiv d0(.var1(inputFP), .var2(scale), .result(scaledFp));
-	//FMA f0(inputFP, scale_inv, 32'b0, scaledFp32, scaledFp);
-	fastinv f1(scale_inv, scalereg);
+	fastinv f1(scale, scalereg);
 	fp32mul fp0(inputFP, scalereg, scaledFp);
 	
 	assign scaledFp32 = scaledFp;
@@ -31,7 +29,7 @@ module quantization (
 		
 		cvrtInt = 10'b0000000001;
 		manScale = scaledFp[22:0];
-		temp = signed'(scaledFp[30:23]-127);
+		temp = (scaledFp[30:23]-127);
 		for(j = 0; j < 7; j++) begin
 			if (j >= temp) begin
 				j = 8;
@@ -121,7 +119,7 @@ endmodule
 	assign result = nAn ? 32'h7FC00000 : {signF, expC, mantissaProd[22:0]};
 endmodule*/
 
-/*module fp32mul (
+module fp32mul (
 	input logic [31:0] num1,
 	input logic [31:0] num2,
 	output logic [31:0] out_mul
@@ -161,7 +159,7 @@ endmodule*/
 		out_mul = {sign, expF, mantissa};
 	end
 
-endmodule*/
+endmodule
 
 /*module fadd (
 	input logic [31:0] num1,
