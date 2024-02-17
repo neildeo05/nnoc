@@ -16,14 +16,14 @@ float int32_to_float_32(uint32_t val) {
 
  int main (int argc, char** argv, char** env) {
  	Vquantization *vq = new Vquantization;
- 	float sc = (1.23);
-	float iFP = 2.392;
+ 	float sc = 1.23;
+	float iFP = 23.92;
  	Verilated::traceEverOn(true);
  	VerilatedVcdC *l_trace = new VerilatedVcdC;
  	vq->trace(l_trace, 5);
  	l_trace->open("qWaveform.vcd");
  	
-	vq->scale_inv = *((uint32_t*)(&sc));
+	vq->scale = *((uint32_t*)(&sc));
 	vq->inputFP = *((uint32_t*)(&iFP));
 
  	while (cnt < MAX_TIME) {
